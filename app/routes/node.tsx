@@ -1,8 +1,6 @@
 import type { LoaderArgs } from "@remix-run/node";
 import { useLoaderData } from "@remix-run/react";
 
-export const config = { runtime: "edge" };
-
 let isCold = true;
 let initialDate = Date.now();
 
