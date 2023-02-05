@@ -1,5 +1,4 @@
-import type { MetaFunction } from "@remix-run/node";
-import type { LinksFunction } from "@remix-run/node";
+import type { MetaFunction, LinksFunction } from "@remix-run/node";
 
 import {
   Links,
