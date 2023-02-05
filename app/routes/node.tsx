@@ -72,9 +72,12 @@ export default function App() {
           </div>
         </main>
         <div className="debug">
-          Generated at {date} ({isCold ? "cold" : "hot"}) by Vercel{" "}
-          <a href="https://edge-runtime.vercel.app" target="_blank">
-            Edge Runtime
+          Generated at {date} ({isCold ? "cold" : "hot"}) by{" "}
+          <a
+            href="https://vercel.com/docs/concepts/functions/serverless-functions"
+            target="_blank"
+          >
+            Vercel Serverless Functions
           </a>
         </div>
       </div>
