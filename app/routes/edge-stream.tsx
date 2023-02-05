@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { defer } from "@remix-run/node";
+import { defer } from "@remix-run/server-runtime";
 import type { LoaderArgs } from "@remix-run/node";
 import { Await, useLoaderData } from "@remix-run/react";
 
