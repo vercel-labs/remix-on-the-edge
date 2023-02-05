@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import { defer } from "@remix-run/server-runtime";
-import type { LoaderArgs } from "@remix-run/node";
+import type { LoaderArgs } from "@remix-run/server-runtime";
 import { Await, useLoaderData } from "@remix-run/react";
 
 export const config = { runtime: "edge" };
