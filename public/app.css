@@ -38,12 +38,12 @@ main {
 }
 
 main h1 {
-  font-size: min(16vw, 4rem);
+  font-size: min(16vw, 3rem);
   font-weight: 600;
   margin: 0;
   text-align: center;
   position: absolute;
-  top: 10vh;
+  top: 16vh;
   left: 0;
   width: 100%;
   padding: 0 2.5rem;
@@ -100,12 +100,18 @@ main .block strong.na {
 
 .debug {
   position: absolute;
-  bottom: 20px;
+  bottom: 8px;
   text-align: center;
   width: 100%;
   font-size: 11px;
   color: #999;
   z-index: 1;
+  padding-bottom: 4px;
+}
+
+.debug p {
+  max-width: 270px;
+  margin: 0 auto;
 }
 
 .debug a {
@@ -364,6 +370,8 @@ nav {
   margin: 0 auto;
   padding: 8px;
   font-size: 14px;
+  position: absolute;
+  width: 100%;
 }
 
 nav ul {

@@ -70,13 +70,15 @@ export default function App() {
           </div>
         </main>
         <div className="debug">
-          Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
-          <a
-            href="https://vercel.com/docs/concepts/functions/serverless-functions"
-            target="_blank"
-          >
-            Vercel Serverless Functions
-          </a>
+          <p>
+            Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
+            <a
+              href="https://vercel.com/docs/concepts/functions/serverless-functions"
+              target="_blank"
+            >
+              Vercel Serverless Functions
+            </a>
+          </p>
         </div>
       </div>
 

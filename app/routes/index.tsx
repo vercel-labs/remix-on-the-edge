@@ -85,13 +85,15 @@ export default function App() {
           </div>
         </main>
         <div className="debug">
-          Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
-          <a
-            href="https://vercel.com/docs/concepts/functions/edge-functions"
-            target="_blank"
-          >
-            Vercel Edge Runtime
-          </a>
+          <p>
+            Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
+            <a
+              href="https://vercel.com/docs/concepts/functions/edge-functions"
+              target="_blank"
+            >
+              Vercel Edge Runtime
+            </a>
+          </p>
         </div>
       </div>
 
