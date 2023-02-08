@@ -1,5 +1,5 @@
-import type { LoaderArgs } from "@remix-run/server-runtime";
-import { useLoaderData } from "@remix-run/react";
+import type { LoaderArgs } from '@remix-run/server-runtime';
+import { useLoaderData } from '@remix-run/react';
 
 let isCold = true;
 let initialDate = Date.now();
@@ -9,8 +9,8 @@ export async function loader({ request }: LoaderArgs) {
   isCold = false;
 
   // we still render IP to demonstrate dynamic-ness
-  const ip = (request.headers.get("x-forwarded-for") ?? "127.0.0.1").split(
-    ","
+  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(
+    ','
   )[0];
 
   // `process.versions.node` only exists in the Node.js runtime, naturally
@@ -26,7 +26,7 @@ export async function loader({ request }: LoaderArgs) {
 
 export function headers() {
   return {
-    "x-serverless-age": Date.now() - initialDate,
+    'x-serverless-age': Date.now() - initialDate,
   };
 }
 
@@ -34,27 +34,27 @@ export default function App() {
   const { version, ip, isCold, date } = useLoaderData();
   return (
     <>
-      <div style={{ height: "100%" }}>
+      <div style={{ height: '100%' }}>
         <Card />
 
         <main>
           <h1>
-            <span>Hello from Serverless!</span>
+            <span>Hello from Node.js SSR!</span>
           </h1>
 
           <div className="info">
             <div className="block">
               <div className="contents">
-                <span style={{ display: "flex", alignItems: "center" }}>
+                <span style={{ display: 'flex', alignItems: 'center' }}>
                   <Nodejs
                     style={{
-                      display: "inline-flex",
-                      alignSelf: "center",
+                      display: 'inline-flex',
+                      alignSelf: 'center',
                       marginRight: 5,
                     }}
                     width={16}
                     height={16}
-                  />{" "}
+                  />{' '}
                   Node.js Version
                 </span>
                 <strong>{version}</strong>
@@ -70,7 +70,7 @@ export default function App() {
           </div>
         </main>
         <div className="debug">
-          Generated at {date} ({isCold ? "cold" : "hot"}) by{" "}
+          Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
           <a
             href="https://vercel.com/docs/concepts/functions/serverless-functions"
             target="_blank"
@@ -222,19 +222,19 @@ function Card() {
           <stop
             offset={0.3}
             style={{
-              stopColor: "var(--g1)",
+              stopColor: 'var(--g1)',
             }}
           />
           <stop
             offset={0.5}
             style={{
-              stopColor: "var(--g2)",
+              stopColor: 'var(--g2)',
             }}
           />
           <stop
             offset={0.8}
             style={{
-              stopColor: "var(--g1)",
+              stopColor: 'var(--g1)',
             }}
           />
         </linearGradient>
@@ -249,19 +249,19 @@ function Card() {
           <stop
             offset={0.3}
             style={{
-              stopColor: "var(--remix)",
+              stopColor: 'var(--remix)',
             }}
           />
           <stop
             offset={0.5}
             style={{
-              stopColor: "#BBF0FF",
+              stopColor: '#BBF0FF',
             }}
           />
           <stop
             offset={0.8}
             style={{
-              stopColor: "var(--remix)",
+              stopColor: 'var(--remix)',
             }}
           />
         </linearGradient>
@@ -320,8 +320,8 @@ function Card() {
           <circle
             className="orbit"
             style={{
-              stroke: "url(#gradient-1)",
-              animationDelay: "0",
+              stroke: 'url(#gradient-1)',
+              animationDelay: '0',
             }}
             r={53.4}
           />
@@ -330,15 +330,15 @@ function Card() {
           <circle
             className="orbit"
             style={{
-              stroke: "url(#gradient-2)",
-              animationDelay: "0.03s",
+              stroke: 'url(#gradient-2)',
+              animationDelay: '0.03s',
             }}
             r={103.4}
           />
           <circle
             className="gray satellite"
             style={{
-              animationDelay: "0.9s",
+              animationDelay: '0.9s',
             }}
             cx={-69.6}
             cy={-76}
@@ -349,15 +349,15 @@ function Card() {
           <circle
             className="orbit"
             style={{
-              stroke: "url(#gradient-3)",
-              animationDelay: "0.06s",
+              stroke: 'url(#gradient-3)',
+              animationDelay: '0.06s',
             }}
             r={160.4}
           />
           <circle
             className="orange satellite"
             style={{
-              animationDelay: "0.8s",
+              animationDelay: '0.8s',
             }}
             cx={102.4}
             cy={-123}
@@ -368,15 +368,15 @@ function Card() {
           <circle
             className="orbit"
             style={{
-              stroke: "url(#gradient-4)",
-              animationDelay: "0.09s",
+              stroke: 'url(#gradient-4)',
+              animationDelay: '0.09s',
             }}
             r={267.3}
           />
           <circle
             className="orange satellite"
             style={{
-              animationDelay: "0.6s",
+              animationDelay: '0.6s',
             }}
             cx={-243.6}
             cy={111.4}
@@ -385,7 +385,7 @@ function Card() {
           <circle
             className="gray satellite"
             style={{
-              animationDelay: "1s",
+              animationDelay: '1s',
             }}
             cx={250}
             cy={94.4}
@@ -394,7 +394,7 @@ function Card() {
           <circle
             className="orange satellite"
             style={{
-              animationDelay: "0.7s",
+              animationDelay: '0.7s',
             }}
             cx={-236.6}
             cy={-123.6}
@@ -405,8 +405,8 @@ function Card() {
           <circle
             className="orbit"
             style={{
-              stroke: "url(#gradient-5)",
-              animationDelay: "0.12s",
+              stroke: 'url(#gradient-5)',
+              animationDelay: '0.12s',
             }}
             r={388.5}
           />
@@ -416,7 +416,7 @@ function Card() {
         id="vercel-logo"
         d="m336.4 261-46.2-80-46.2 80h92.4z"
         style={{
-          fill: "url(#gradient-vercel)",
+          fill: 'url(#gradient-vercel)',
         }}
       />
       <g id="center">
@@ -424,10 +424,10 @@ function Card() {
           d="M420 202 v36 M 402 220h36"
           style={{
             strokeWidth: 3.5625,
-            strokeLinecap: "round",
-            strokeLinejoin: "round",
-            stroke: "#999",
-            fill: "none",
+            strokeLinecap: 'round',
+            strokeLinejoin: 'round',
+            stroke: '#999',
+            fill: 'none',
           }}
         />
       </g>
@@ -455,11 +455,11 @@ function Footer() {
       </p>
 
       <p className="details">
-        Built with{" "}
+        Built with{' '}
         <a target="_blank" href="https://remix.run">
           Remix
-        </a>{" "}
-        on{" "}
+        </a>{' '}
+        on{' '}
         <a target="_blank" href="https://vercel.com">
           Vercel
         </a>
@@ -503,7 +503,7 @@ function Nodejs(props) {
       <mask
         id="a"
         style={{
-          maskType: "luminance",
+          maskType: 'luminance',
         }}
         maskUnits="userSpaceOnUse"
         x={0}
@@ -525,7 +525,7 @@ function Nodejs(props) {
       <mask
         id="b"
         style={{
-          maskType: "luminance",
+          maskType: 'luminance',
         }}
         maskUnits="userSpaceOnUse"
         x={2}
@@ -547,7 +547,7 @@ function Nodejs(props) {
       <mask
         id="c"
         style={{
-          maskType: "luminance",
+          maskType: 'luminance',
         }}
         maskUnits="userSpaceOnUse"
         x={4}
