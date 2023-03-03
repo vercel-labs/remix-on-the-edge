@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { defer } from '@remix-run/server-runtime';
+import { defer } from '@remix-run/node';
 import type { LoaderArgs } from '@remix-run/server-runtime';
 import { Await, useLoaderData } from '@remix-run/react';
 
@@ -16,7 +16,7 @@ export async function loader({ request }: LoaderArgs) {
   )[0];
 
   // `process.versions.node` only exists in the Node.js runtime, naturally
-  const version = process.versions.node;
+  const version: string = process.versions.node;
 
   return defer({
     isCold: wasCold,
@@ -26,8 +26,8 @@ export async function loader({ request }: LoaderArgs) {
   });
 }
 
-function sleep(val: any, ms: number) {
-  return new Promise((resolve) => setTimeout(() => resolve(val), ms));
+function sleep<T>(val: T, ms: number) {
+  return new Promise<T>((resolve) => setTimeout(() => resolve(val), ms));
 }
 
 export function headers() {
@@ -37,7 +37,7 @@ export function headers() {
 }
 
 export default function App() {
-  const { version, ip, isCold, date } = useLoaderData();
+  const { version, ip, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <div style={{ height: '100%' }}>
