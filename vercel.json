@@ -1,7 +1,0 @@
-{
-  "build": {
-    "env": {
-      "VERCEL_CLI_VERSION": "https://vercel-git-update-remix-edge.vercel.sh/tarballs/vercel.tgz"
-    }
-  }
-}
