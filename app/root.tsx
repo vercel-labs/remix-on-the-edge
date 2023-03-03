@@ -1,7 +1,6 @@
 import type { MetaFunction, LinksFunction } from '@remix-run/server-runtime';
 
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
@@ -9,6 +8,10 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
+
+import { cssBundleHref } from "@remix-run/css-bundle";
+
+import { Navigation } from './components/navigation';
 
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -26,6 +29,9 @@ export const meta: MetaFunction = () => ({
 
 export const links: LinksFunction = () => {
   return [
+    ...(cssBundleHref
+      ? [{ rel: "stylesheet", href: cssBundleHref }]
+      : []),
     {
       rel: 'stylesheet',
       href: '/app.css',
@@ -41,22 +47,7 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Edge SSR (streaming)</Link>
-            </li>
-            <li>
-              <Link to="/edge">Edge SSR</Link>
-            </li>
-            <li>
-              <Link to="/node-streaming">Node.js SSR (streaming)</Link>
-            </li>
-            <li>
-              <Link to="/node">Node.js SSR</Link>
-            </li>
-          </ul>
-        </nav>
+        <Navigation/>
         <Outlet />
         <ScrollRestoration />
         <Scripts />

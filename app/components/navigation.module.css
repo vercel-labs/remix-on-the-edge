@@ -1,0 +1,111 @@
+.root {
+    border: 1px solid var(--accents-2);
+    border-radius: 9999px;
+    box-shadow: none;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .root:after {
+    content: '';
+    background: linear-gradient(
+      to left,
+      var(--accents-2) 20%,
+      var(--accents-2) 44%,
+      var(--accents-6) 50%,
+      var(--accents-3) 60%,
+      var(--accents-2) 63%,
+      var(--accents-2) 100%
+    );
+    z-index: -1;
+    background-position-x: var(--x);
+    background-size: 200% auto;
+    position: absolute;
+    border-radius: inherit;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: background-position-x 600ms ease;
+  }
+  
+  .switcher {
+    overflow: hidden;
+    border-radius: inherit;
+    padding: 4px;
+    background: var(--accents-1);
+  }
+  
+  .button {
+    border-radius: inherit;
+    height: 36px;
+    border: 0;
+    font-family: var(--font-sans);
+    padding: 0 20px;
+    font-size: 14px;
+    font-weight: 500;
+    background: transparent;
+    color: var(--accents-5);
+    position: relative;
+    cursor: pointer;
+    transition: color 150ms ease;
+  }
+  
+  .button.active {
+    color: var(--accents-8);
+    text-shadow: 1px 1px 12px rgba(255, 255, 255, 0.4);
+  }
+  
+  .button:focus-visible {
+    outline: var(--focus-outline);
+  }
+  
+  .stroke {
+    background: linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0),
+      var(--accents-4) 20%,
+      var(--accents-2) 67.19%,
+      rgba(0, 0, 0, 0)
+    );
+    height: 1px;
+    position: absolute;
+    top: -1px;
+    width: 90%;
+    left: 32px;
+    z-index: -1;
+  }
+  
+  .glow {
+    background: white;
+    width: 50%;
+    height: 50px;
+    border-radius: inherit;
+    position: absolute;
+    z-index: 1;
+    filter: blur(32px);
+    bottom: -52px;
+  }
+  
+  .pill {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: inherit;
+    background: rgba(255, 255, 255, 0.08);
+  }
+  
+  @media (max-width: 420px) {
+    .button {
+      padding: 0 12px;
+    }
+  }
+  
+  @media (hover: hover) and (pointer: fine) {
+    .button:hover {
+      color: var(--accents-8);
+    }
+  }
+  
