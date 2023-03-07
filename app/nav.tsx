@@ -18,7 +18,7 @@ export default function NavigationSwitcher() {
       <div className="nav-root">
         <div aria-hidden className="nav-stroke" />
         <div className="nav-switcher">
-          {SECTION_DATA.map((section) => {
+          {SECTION_DATA.map((section, i) => {
             const isActive =
               section.href === (route === "/index" ? "/" : route);
             return (
@@ -46,6 +46,15 @@ export default function NavigationSwitcher() {
                     />
                     <motion.div
                       layout
+                      initial={false}
+                      animate={{
+                        borderTopLeftRadius: i === 0 ? 100 : 4,
+                        borderTopRightRadius:
+                          i === SECTION_DATA.length - 1 ? 100 : 4,
+                        borderBottomLeftRadius: i === 0 ? 100 : 4,
+                        borderBottomRightRadius:
+                          i === SECTION_DATA.length - 1 ? 100 : 4,
+                      }}
                       aria-hidden
                       className="nav-pill"
                       layoutId="pill"
