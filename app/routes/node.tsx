@@ -1,4 +1,4 @@
-import type { LoaderArgs } from '@remix-run/server-runtime';
+import type { LoaderArgs } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react';
 
 let isCold = true;

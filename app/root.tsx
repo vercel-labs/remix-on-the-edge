@@ -1,4 +1,4 @@
-import type { MetaFunction, LinksFunction } from '@remix-run/server-runtime';
+import type { MetaFunction, LinksFunction } from '@vercel/remix';
 
 import {
   Link,
