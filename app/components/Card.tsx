@@ -356,7 +356,9 @@ export function Card() {
             }}
           />
         </g>
-        <use id="remix-logo-light" href="#remix-logo-light" width={137} height={137} x={500} y={150} />
+        <svg viewBox="0 0 700 700" x={315} y={172}>
+          <use id="remix-logo-light" href="#remix-logo-light" />
+        </svg>
         <use id="remix-logo-dark" href="#remix-logo-dark" width={137} height={137} x={500} y={150} />
       </svg>
     );
