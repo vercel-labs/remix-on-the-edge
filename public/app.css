@@ -406,3 +406,11 @@ nav a {
     background: none;
   }
 }
+
+#remix-logo-dark { display: none; }
+#remix-logo-light { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  #remix-logo-dark { display: block; }
+  #remix-logo-light { display: none; }
+}
