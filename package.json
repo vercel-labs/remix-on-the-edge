@@ -7,11 +7,9 @@
     "typecheck": "tsc"
   },
   "dependencies": {
-    "@remix-run/node": "^1.14.0",
     "@remix-run/react": "^1.14.3",
     "@vercel/remix": "1.14.3-patch.1",
     "framer-motion": "^10.0.1",
-    "isbot": "^3.6.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
