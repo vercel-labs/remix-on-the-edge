@@ -5,7 +5,7 @@ import { Await, useLoaderData } from '@remix-run/react';
 
 import { Card } from '../components/Card';
 
-export const config = { runtime: 'edge' };
+export const config = { runtime: 'edge', regions: ['iad1'] };
 
 let isCold = true;
 let initialDate = Date.now();
@@ -14,19 +14,18 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  const parsedCity = decodeURIComponent(
-    request.headers.get('x-vercel-ip-city') ?? 'null'
-  );
-  // from vercel we get the string `null` when it can't decode the IP
-  const city = parsedCity === 'null' ? null : parsedCity;
-  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(
-    ','
-  )[0];
+  const id = request.headers.get("x-vercel-id")?.split(":").filter(Boolean);
+  if (!id) {
+    throw new Error('"x-vercel-id" header not present');
+  }
+
+  const proxyRegion = id[0];
+  const edgeInvokeRegion = id[id.length - 2];
 
   return defer({
     isCold: wasCold,
-    city: sleep(city, 1000),
-    ip: sleep(ip, 1500),
+    proxyRegion: sleep(proxyRegion, 1000),
+    edgeInvokeRegion: sleep(edgeInvokeRegion, 1500),
     date: new Date().toISOString(),
   });
 }
@@ -42,10 +41,10 @@ export function headers() {
 }
 
 export default function App() {
-  const { city, ip, isCold, date } = useLoaderData();
+  const { proxyRegion, edgeInvokeRegion, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
-      <div style={{ height: '100%' }}>
+      <div style={{ height: "100%" }}>
         <Card />
 
         <main>
@@ -56,21 +55,10 @@ export default function App() {
           <div className="info">
             <div className="block">
               <div className="contents">
-                <span>Your city</span>
-                <Suspense fallback={'Loading…'}>
-                  <Await resolve={city}>
-                    {(city) => (
-                      <strong
-                        title={
-                          city === null
-                            ? 'GeoIP information could not be derived from your IP'
-                            : ''
-                        }
-                        className={city === null ? 'na' : ''}
-                      >
-                        {city === null ? 'N/A' : city}
-                      </strong>
-                    )}
+                <span>Proxy region</span>
+                <Suspense fallback={"Loading…"}>
+                  <Await resolve={proxyRegion}>
+                    {(proxyRegion) => <strong>{proxyRegion}</strong>}
                   </Await>
                 </Suspense>
               </div>
@@ -78,9 +66,11 @@ export default function App() {
 
             <div className="block">
               <div className="contents">
-                <span>Your IP address</span>
-                <Suspense fallback={'Loading…'}>
-                  <Await resolve={ip}>{(ip) => <strong>{ip}</strong>}</Await>
+                <span>Edge region</span>
+                <Suspense fallback={"Loading…"}>
+                  <Await resolve={edgeInvokeRegion}>
+                    {(edgeInvokeRegion) => <strong>{edgeInvokeRegion}</strong>}
+                  </Await>
                 </Suspense>
               </div>
             </div>
@@ -88,7 +78,7 @@ export default function App() {
         </main>
         <div className="debug">
           <p>
-            Generated at {date} ({isCold ? 'cold' : 'hot'}) by{' '}
+            Generated at {date} ({isCold ? "cold" : "hot"}) by{" "}
             <a
               href="https://vercel.com/docs/concepts/functions/edge-functions"
               target="_blank"
