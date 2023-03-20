@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@remix-run/dev': ^1.14.3
   '@remix-run/eslint-config': ^1.14.3
+  '@remix-run/node': ^1.14.3
   '@remix-run/react': ^1.14.3
   '@remix-run/serve': ^1.14.3
   '@types/react': ^18.0.25
@@ -15,6 +16,7 @@ specifiers:
   typescript: ^4.8.4
 
 dependencies:
+  '@remix-run/node': 1.14.3
   '@remix-run/react': 1.14.3_biqbaboplfbrettd7655fr4n2y
   '@vercel/remix': 1.14.3-patch.1_biqbaboplfbrettd7655fr4n2y
   framer-motion: 10.0.1_biqbaboplfbrettd7655fr4n2y
