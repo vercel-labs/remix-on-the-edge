@@ -11,6 +11,7 @@ specifiers:
   '@vercel/remix': 1.14.3-patch.1
   eslint: ^8.27.0
   framer-motion: ^10.0.1
+  isbot: latest
   react: ^18.2.0
   react-dom: ^18.2.0
   typescript: ^4.8.4
@@ -20,6 +21,7 @@ dependencies:
   '@remix-run/react': 1.14.3_biqbaboplfbrettd7655fr4n2y
   '@vercel/remix': 1.14.3-patch.1_biqbaboplfbrettd7655fr4n2y
   framer-motion: 10.0.1_biqbaboplfbrettd7655fr4n2y
+  isbot: 3.6.7
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
 
@@ -4650,6 +4652,11 @@ packages:
 
   /isbot/3.6.6:
     resolution: {integrity: sha512-98aGl1Spbx1led422YFrusDJ4ZutSNOymb2avZ2V4BCCjF3MqAF2k+J2zoaLYahubaFkb+3UyvbVDVlk/Ngrew==}
+    engines: {node: '>=12'}
+    dev: false
+
+  /isbot/3.6.7:
+    resolution: {integrity: sha512-SXNUQaNZlj/+9jdrGnAp6WW0YoHe3MIwwc6oRIYuhhERBUt7/L6I7JkMiA2sX9fcvS7gZ2C7GWgmDZfOOU4I5g==}
     engines: {node: '>=12'}
     dev: false
 

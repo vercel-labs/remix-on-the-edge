@@ -47,14 +47,6 @@ export default function NavigationSwitcher() {
                     <motion.div
                       layout
                       initial={false}
-                      animate={{
-                        borderTopLeftRadius: i === 0 ? 100 : 4,
-                        borderTopRightRadius:
-                          i === SECTION_DATA.length - 1 ? 100 : 4,
-                        borderBottomLeftRadius: i === 0 ? 100 : 4,
-                        borderBottomRightRadius:
-                          i === SECTION_DATA.length - 1 ? 100 : 4,
-                      }}
                       aria-hidden
                       className="nav-pill"
                       layoutId="pill"
