@@ -7,9 +7,17 @@ body {
   --fg: black;
   --bg: white;
   --remix: #2f77d1;
+  --accents-8: #fafafa;
+  --accents-7: #eaeaea;
+  --accents-6: #999;
+  --accents-5: #888;
+  --accents-4: #666;
+  --accents-3: #444;
+  --accents-2: #333;
+  --accents-1: #111;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: var(--bg);
   color: var(--fg);
   overflow: hidden;
@@ -365,45 +373,136 @@ footer .company a {
   }
 }
 
+/* nav */
+
 nav {
   display: flex;
+  justify-content: center;
   margin: 0 auto;
   padding: 8px;
+  margin-top: 32px;
   font-size: 14px;
   position: absolute;
   width: 100%;
 }
 
-nav ul {
+.nav-root {
+  border: 1px solid var(--accents-2);
+  border-radius: 9999px;
+  box-shadow: none;
+  height: 50px;
   display: flex;
-  list-style: none;
-  margin: 8px auto;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
+  position: relative;
+  z-index: 10;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-right: 14px;
-  background: #1a1a1a;
-  padding: 8px 12px;
-  border-radius: 4px;
-  z-index: 1;
-  letter-spacing: -0.02em;
-  position: sticky;
+.nav-root:after {
+  content: "";
+  background: linear-gradient(
+    to left,
+    var(--accents-2) 20%,
+    var(--accents-2) 44%,
+    var(--accents-6) 50%,
+    var(--accents-3) 60%,
+    var(--accents-2) 63%,
+    var(--accents-2) 100%
+  );
+  z-index: -1;
+  background-size: 200% auto;
+  position: absolute;
+  border-radius: inherit;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.nav-switcher {
+  overflow: hidden;
+  border-radius: inherit;
+  padding: 4px;
+  box-sizing: border-box;
+  height: 100%;
   display: flex;
+  background: var(--accents-1);
 }
 
-@media (max-width: 640px) {
-  nav ul {
-    flex-direction: column;
-    margin: 0;
-    padding: 0 16px;
+.nav-link {
+  display: flex;
+  border-radius: inherit;
+  font-family: var(--font-sans);
+  padding: 0 20px;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  white-space: nowrap;
+  background: transparent;
+  text-decoration: none;
+  color: var(--accents-5);
+  cursor: pointer;
+  position: relative;
+  transition: color 150ms ease;
+}
+
+.nav-link.active {
+  color: var(--accents-8);
+  text-shadow: 1px 1px 12px rgba(255, 255, 255, 0.4);
+}
+
+.nav-link:focus-visible {
+  outline: var(--focus-outline);
+}
+
+.nav-stroke {
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0),
+    var(--accents-4) 20%,
+    var(--accents-2) 67.19%,
+    rgba(0, 0, 0, 0)
+  );
+  height: 1px;
+  position: absolute;
+  top: -1px;
+  width: 90%;
+  left: 32px;
+  z-index: -1;
+}
+
+.nav-glow {
+  background: #ffffff99;
+  width: 50%;
+  height: 50px;
+  border-radius: inherit;
+  position: absolute;
+  z-index: 1;
+  filter: blur(32px);
+  bottom: -52px;
+}
+
+.nav-pill {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+@media (max-width: 420px) {
+  .nav-link {
+    padding: 0 12px;
   }
-  nav a {
-    margin-bottom: 4px;
-    padding: 2px 0;
-    background: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-link:hover {
+    color: var(--accents-8);
   }
 }
 
