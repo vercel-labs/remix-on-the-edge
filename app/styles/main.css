@@ -152,6 +152,7 @@ main {
 }
 
 .info span {
+  white-space: nowrap;
   display: flex;
   width: fit-content;
   align-items: center;
