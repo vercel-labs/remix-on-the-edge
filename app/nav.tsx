@@ -5,7 +5,7 @@ const SECTION_DATA = [
   { label: "Edge (streaming)", href: "/", x: '100%' },
   { label: "Edge", href: "/edge", x: '62%' },
   { label: "Node.js (streaming)", href: "/node-streaming", x: '38%' },
-  { label: "Node.js", href: "/node", x: '10%' },
+  { label: "Node.js", href: "/node", x: '0%' },
 ];
 
 export default function NavigationSwitcher() {

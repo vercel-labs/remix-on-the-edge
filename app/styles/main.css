@@ -463,6 +463,7 @@ nav {
   position: relative;
   cursor: pointer;
   transition: color 150ms ease;
+  text-decoration: none;
 }
 
 .nav-link.active {
@@ -499,6 +500,7 @@ nav {
   z-index: 1;
   filter: blur(32px);
   bottom: -52px;
+  left: 25%;
 }
 
 .nav-pill {
