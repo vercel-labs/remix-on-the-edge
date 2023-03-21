@@ -4,7 +4,6 @@ import { useLoaderData } from '@remix-run/react';
 import { Card } from '~/components/Card';
 import { Region } from '~/components/Region';
 import { Nodejs } from '~/components/icons/Nodejs';
-import { parseVercelId } from '~/parse-vercel-id';
 
 let isCold = true;
 let initialDate = Date.now();
@@ -16,12 +15,15 @@ export async function loader({ request }: LoaderArgs) {
   // `process.versions.node` only exists in the Node.js runtime, naturally
   const version = process.versions.node;
 
-  const parsedId = parseVercelId(request.headers.get("x-vercel-id"));
+  const region = process.env.VERCEL_REGION;
+  if (!region) {
+    throw new Error('`VERCEL_REGION` is not defined');
+  }
 
   return {
-    ...parsedId,
     isCold: wasCold,
     version,
+    region,
     date: new Date().toISOString(),
   };
 }
@@ -33,7 +35,7 @@ export function headers() {
 }
 
 export default function App() {
-  const { version, computeRegion, isCold, date } = useLoaderData<typeof loader>();
+  const { version, region, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <div style={{ height: '100%' }}>
@@ -66,7 +68,7 @@ export default function App() {
             <div className="block">
               <div className="contents">
                 <span>Compute region</span>
-                <Region region={computeRegion} />
+                <Region region={region} />
               </div>
             </div>
           </div>
