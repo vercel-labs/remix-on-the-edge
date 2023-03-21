@@ -371,6 +371,7 @@ nav:after {
   transition: color 150ms ease;
   text-decoration: none;
   white-space: nowrap;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
 .nav-link.active {
