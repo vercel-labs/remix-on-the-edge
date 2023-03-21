@@ -17,4 +17,5 @@ export const regions: Record<string, string> = {
   lhr1: "London",
   fra1: "Frankfurt",
   cpt1: "Cape Town",
+  dev1: "localhost",
 };
