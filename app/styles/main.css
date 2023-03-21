@@ -40,7 +40,6 @@ body {
   background: var(--bg);
   color: var(--fg);
   padding: 0 var(--root-padding);
-  overflow: hidden;
   background-image: url(/bg-light.png);
   background-size: cover;
   background-position: center center;
@@ -134,12 +133,12 @@ main {
 }
 
 .meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 240px);
   align-items: center;
   justify-content: center;
-  max-width: 480px;
   width: 100%;
-  gap: 120px;
+  gap: 0px;
   margin-top: 40vh;
 }
 
@@ -147,8 +146,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  --border-color: rgba(0, 0, 0, 0.08);
-  width: 50%;
 }
 
 .info span {
@@ -509,7 +506,8 @@ nav:after {
 
 @media (max-width: 560px) {
   .meta {
-    gap: 32px;
+    gap: 16px;
+    grid-template-columns: repeat(2, 150px);
   }
 
   .info span {
@@ -523,7 +521,6 @@ nav:after {
 
   .info {
     align-items: center;
-    text-align: center;
   }
 
   .info strong {
