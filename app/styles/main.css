@@ -156,7 +156,7 @@ main {
   width: fit-content;
   align-items: center;
   gap: 8px;
-  font-size: 16px;
+  font-size: max(14px, min(2vw, 16px));
   color: var(--accents-4);
 }
 
@@ -170,8 +170,8 @@ main {
 }
 
 .info strong {
-  font-size: 40px;
   line-height: 1.2;
+  font-size: max(18px, min(5vw, 40px));
 }
 
 @keyframes spin {
@@ -562,26 +562,22 @@ nav:after {
   }
 }
 
-@media (max-width: 560px) {
+@media (max-width: 600px) {
   .meta {
-    gap: 16px;
+    gap: 8px;
   }
 
   footer {
     gap: 12px;
   }
 
-  .info span {
-    font-size: 15px;
+  .info {
+    gap: 8px;
   }
 
   .info span svg {
     width: 14px;
     height: 14px;
-  }
-
-  .info strong {
-    font-size: 24px;
   }
 
   .vercel,
