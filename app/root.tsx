@@ -14,7 +14,7 @@ export const meta: MetaFunction = () => ({
   'twitter:creator': '@vercel',
   'twitter:title': 'Remix on Vercel Edge Functions',
   'twitter:description': 'HTML, dynamically rendered in a city near you',
-  'twitter:image': '/og-card.png',
+  'twitter:image': 'https://remix-on-the-edge.vercel.app/og-card.png',
   'twitter:image:alt': 'The Vercel and Remix logos',
   viewport: 'width=device-width,initial-scale=1',
 });
