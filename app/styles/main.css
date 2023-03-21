@@ -262,11 +262,6 @@ main {
   animation-duration: 120s;
 }
 
-.illustration #gradient-vercel {
-  --g1: #000;
-  --g2: #333;
-}
-
 /* footer */
 
 footer {
