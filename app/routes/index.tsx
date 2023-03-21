@@ -4,7 +4,9 @@ import type { LoaderArgs } from '@vercel/remix';
 import { Await, useLoaderData } from '@remix-run/react';
 
 import { Footer } from '~/components/footer';
+import { Region } from '~/components/region';
 import { Illustration } from '~/components/illustration';
+import { parseVercelId } from '~/parse-vercel-id';
 
 export const config = { runtime: 'edge' };
 
@@ -15,15 +17,12 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  const parsedCity = decodeURIComponent(request.headers.get('x-vercel-ip-city') ?? 'null');
-  // from vercel we get the string `null` when it can't decode the IP
-  const city = parsedCity === 'null' ? null : parsedCity;
-  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
+  const parsedId = parseVercelId(request.headers.get("x-vercel-id"));
 
   return defer({
     isCold: wasCold,
-    city: sleep(city, 1000),
-    ip: sleep(ip, 1500),
+    proxyRegion: sleep(parsedId.proxyRegion, 1000),
+    computeRegion: sleep(parsedId.computeRegion, 1500),
     date: new Date().toISOString(),
   });
 }
@@ -39,28 +38,26 @@ export function headers() {
 }
 
 export default function App() {
-  const { city, ip, isCold, date } = useLoaderData();
+  const { proxyRegion, computeRegion, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <main>
         <Illustration />
         <div className="meta">
           <div className="info">
-            <span>Your city</span>
+            <span>Proxy Region</span>
             <Suspense fallback={<strong>Loading...</strong>}>
-              <Await resolve={city}>
-                {(city) => (
-                  <strong title={city === null ? 'GeoIP information could not be derived from your IP' : ''}>
-                    {city === null ? 'N/A' : city}
-                  </strong>
-                )}
+              <Await resolve={proxyRegion}>
+                {(region) => <Region region={region} />}
               </Await>
             </Suspense>
           </div>
           <div className="info">
-            <span>Your IP</span>
+            <span>Compute Region</span>
             <Suspense fallback={<strong>Loading...</strong>}>
-              <Await resolve={ip}>{(ip) => <strong>{ip}</strong>}</Await>
+              <Await resolve={computeRegion}>
+                {(region) => <Region region={region} />}
+              </Await>
             </Suspense>
           </div>
         </div>
@@ -68,8 +65,12 @@ export default function App() {
 
       <Footer>
         <p>
-          Generated at {date} <span data-break /> ({isCold ? 'cold' : 'hot'}) by{' '}
-          <a href="https://vercel.com/docs/concepts/functions/edge-functions" target="_blank" rel="noreferrer">
+          Generated at {date} <span data-break /> ({isCold ? "cold" : "hot"}) by{" "}
+          <a
+            href="https://vercel.com/docs/concepts/functions/edge-functions"
+            target="_blank"
+            rel="noreferrer"
+          >
             Vercel Edge Runtime
           </a>
         </p>

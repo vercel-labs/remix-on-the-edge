@@ -1,7 +1,7 @@
 import type { MetaFunction, LinksFunction } from '@vercel/remix';
 
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
-import NavigationSwitcher from './nav';
+import NavigationSwitcher from '~/nav';
 
 import mainCss from '~/styles/main.css';
 

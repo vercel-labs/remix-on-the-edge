@@ -4,6 +4,7 @@ import type { LoaderArgs } from '@vercel/remix';
 import { Await, useLoaderData } from '@remix-run/react';
 
 import { Footer } from '~/components/footer';
+import { Region } from '~/components/region';
 import { Illustration } from '~/components/illustration';
 
 let isCold = true;
@@ -13,16 +14,18 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  // we still render IP to demonstrate dynamic-ness
-  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
-
   // `process.versions.node` only exists in the Node.js runtime, naturally
   const version: string = process.versions.node;
+
+  const region = process.env.VERCEL_REGION;
+  if (!region) {
+    throw new Error('`VERCEL_REGION` is not defined');
+  }
 
   return defer({
     isCold: wasCold,
     version: sleep(version, 1000),
-    ip: sleep(ip, 1500),
+    region: sleep(region, 1500),
     date: new Date().toISOString(),
   });
 }
@@ -38,7 +41,7 @@ export function headers() {
 }
 
 export default function App() {
-  const { version, ip, isCold, date } = useLoaderData<typeof loader>();
+  const { version, region, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <main>
@@ -50,23 +53,31 @@ export default function App() {
               Node.js Version
             </span>
             <Suspense fallback={<strong>Loading...</strong>}>
-              <Await resolve={version}>{(version) => <strong>{version}</strong>}</Await>
+              <Await resolve={version}>
+                {(version) => <strong>{version}</strong>}
+              </Await>
             </Suspense>
           </div>
           <div className="info">
-            <span>Your IP</span>
+            <span>Compute Region</span>
             <Suspense fallback={<strong>Loading...</strong>}>
-              <Await resolve={ip}>{(ip) => <strong>{ip}</strong>}</Await>
+              <Await resolve={region}>
+                {(region) => <Region region={region} />}
+              </Await>
             </Suspense>
           </div>
         </div>
       </main>
 
       <Footer>
-        {' '}
+        {" "}
         <p>
-          Generated at {date} <span data-break /> ({isCold ? 'cold' : 'hot'}) by{' '}
-          <a href="https://vercel.com/docs/concepts/functions/serverless-functions" target="_blank" rel="noreferrer">
+          Generated at {date} <span data-break /> ({isCold ? "cold" : "hot"}) by{" "}
+          <a
+            href="https://vercel.com/docs/concepts/functions/serverless-functions"
+            target="_blank"
+            rel="noreferrer"
+          >
             Vercel Serverless Functions
           </a>
         </p>

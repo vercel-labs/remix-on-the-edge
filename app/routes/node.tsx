@@ -2,6 +2,7 @@ import type { LoaderArgs } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react';
 
 import { Footer } from '~/components/footer';
+import { Region } from '~/components/region';
 import { Illustration } from '~/components/illustration';
 
 let isCold = true;
@@ -11,15 +12,17 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  // we still render IP to demonstrate dynamic-ness
-  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
-
   // `process.versions.node` only exists in the Node.js runtime, naturally
   const version = process.versions.node;
 
+  const region = process.env.VERCEL_REGION;
+  if (!region) {
+    throw new Error('`VERCEL_REGION` is not defined');
+  }
+
   return {
     isCold: wasCold,
-    ip,
+    region,
     version,
     date: new Date().toISOString(),
   };
@@ -32,7 +35,7 @@ export function headers() {
 }
 
 export default function App() {
-  const { version, ip, isCold, date } = useLoaderData();
+  const { version, region, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <main>
@@ -46,8 +49,8 @@ export default function App() {
             <strong>{version}</strong>
           </div>
           <div className="info">
-            <span>Your IP</span>
-            <strong>{ip}</strong>
+            <span>Compute Region</span>
+            <Region region={region} />
           </div>
         </div>
       </main>

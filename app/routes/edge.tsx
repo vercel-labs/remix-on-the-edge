@@ -2,7 +2,9 @@ import type { LoaderArgs } from '@vercel/remix';
 import { useLoaderData } from '@remix-run/react';
 
 import { Footer } from '~/components/footer';
+import { Region } from '~/components/region';
 import { Illustration } from '~/components/illustration';
+import { parseVercelId } from '~/parse-vercel-id';
 
 export const config = { runtime: 'edge' };
 
@@ -13,15 +15,11 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  const parsedCity = decodeURIComponent(request.headers.get('x-vercel-ip-city') ?? 'null');
-  // from vercel we get the string `null` when it can't decode the IP
-  const city = parsedCity === 'null' ? null : parsedCity;
-  const ip = (request.headers.get('x-forwarded-for') ?? '127.0.0.1').split(',')[0];
+  const parsedId = parseVercelId(request.headers.get("x-vercel-id"));
 
   return {
+    ...parsedId,
     isCold: wasCold,
-    city,
-    ip,
     date: new Date().toISOString(),
   };
 }
@@ -33,21 +31,19 @@ export function headers() {
 }
 
 export default function App() {
-  const { city, ip, isCold, date } = useLoaderData();
+  const { proxyRegion, computeRegion, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <main>
         <Illustration />
         <div className="meta">
           <div className="info">
-            <span>Your city</span>
-            <strong title={city === null ? 'GeoIP information could not be derived from your IP' : ''}>
-              {city === null ? 'N/A' : city}
-            </strong>
+            <span>Proxy Region</span>
+            <Region region={proxyRegion} />
           </div>
           <div className="info">
-            <span>Your IP</span>
-            <strong>{ip}</strong>
+            <span>Compute Region</span>
+            <Region region={computeRegion} />
           </div>
         </div>
       </main>
