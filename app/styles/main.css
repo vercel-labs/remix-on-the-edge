@@ -298,7 +298,7 @@ footer .source {
   text-decoration: none;
 }
 
-footer .vercel {
+.vercel {
   height: 24px;
 }
 
@@ -481,7 +481,7 @@ nav:after {
     align-items: center;
     gap: 16px;
     padding: 32px 16px;
-    font-size: 14px;
+    font-size: 13px;
   }
 
   footer [data-break] {
@@ -495,10 +495,6 @@ nav:after {
 
   .source {
     margin-top: 4px;
-  }
-
-  .vercel {
-    margin-bottom: 4px;
   }
 
   nav {
@@ -522,5 +518,10 @@ nav:after {
 
   .info strong {
     font-size: 24px;
+  }
+
+  .vercel,
+  .vercel svg {
+    height: 18px;
   }
 }
