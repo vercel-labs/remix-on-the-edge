@@ -12,6 +12,11 @@ export function Illustration() {
         className="illustration"
         data-theme="light"
         aria-label={ILLUSTRATION_ARIA_LABEL}
+        style={
+          {
+            '--circle-opacity': 0.1,
+          } as React.CSSProperties
+        }
       >
         <circle
           opacity="0.1"
@@ -20,16 +25,19 @@ export function Illustration() {
           r="160.417"
           stroke="url(#paint0_linear_131_9)"
           strokeWidth="1.16501"
+          data-index={2}
         />
         <circle
           opacity="0.1"
           cx="387.214"
           cy="389"
           r="103.417"
+          data-index={1}
           stroke="url(#paint1_linear_131_9)"
           strokeWidth="1.16501"
         />
         <circle
+          data-index={0}
           opacity="0.1"
           cx="387.214"
           cy="389"
@@ -42,6 +50,7 @@ export function Illustration() {
           cx="389.089"
           cy="389.089"
           r="267.295"
+          data-index={3}
           stroke="url(#paint3_linear_131_9)"
           strokeWidth="1.16501"
         />
@@ -50,10 +59,17 @@ export function Illustration() {
           cx="389.089"
           cy="389.089"
           r="388.507"
+          data-index={4}
           stroke="url(#paint4_linear_131_9)"
           strokeWidth="1.16501"
         />
         <circle
+          style={
+            {
+              '--circle-opacity': 1,
+            } as React.CSSProperties
+          }
+          className="orbit"
           cx="145.622"
           cy="499.408"
           r="5.65757"
@@ -61,8 +77,15 @@ export function Illustration() {
           fill="white"
           stroke="#2F77D1"
           strokeWidth="1.5"
+          data-index={0}
         />
         <circle
+          style={
+            {
+              '--circle-opacity': 1,
+            } as React.CSSProperties
+          }
+          className="orbit"
           cx="152.622"
           cy="264.408"
           r="5.65757"
@@ -70,8 +93,15 @@ export function Illustration() {
           fill="white"
           stroke="#2F77D1"
           strokeWidth="1.5"
+          data-index={1}
         />
         <circle
+          style={
+            {
+              '--circle-opacity': 1,
+            } as React.CSSProperties
+          }
+          className="orbit"
           cx="319.622"
           cy="310.408"
           r="5.65757"
@@ -79,8 +109,15 @@ export function Illustration() {
           fill="white"
           stroke="black"
           strokeWidth="1.5"
+          data-index={2}
         />
         <circle
+          style={
+            {
+              '--circle-opacity': 1,
+            } as React.CSSProperties
+          }
+          className="orbit"
           cx="491.622"
           cy="264.408"
           r="5.65757"
@@ -88,8 +125,15 @@ export function Illustration() {
           fill="white"
           stroke="#2F77D1"
           strokeWidth="1.5"
+          data-index={3}
         />
         <circle
+          style={
+            {
+              '--circle-opacity': 1,
+            } as React.CSSProperties
+          }
+          className="orbit"
           cx="640.622"
           cy="482.408"
           r="5.82506"
@@ -97,6 +141,7 @@ export function Illustration() {
           fill="white"
           stroke="black"
           strokeWidth="1.16501"
+          data-index={4}
         />
         <path d="M305.589 429L259.401 349L213.214 429H305.589Z" fill="black" />
         <path
@@ -228,13 +273,53 @@ export function Illustration() {
         className="illustration"
         data-theme="dark"
         aria-label={ILLUSTRATION_ARIA_LABEL}
+        style={
+          {
+            '--circle-opacity': 1,
+          } as React.CSSProperties
+        }
       >
-        <circle cx="389.214" cy="389" r="160.417" stroke="url(#paint0_linear_12_112)" strokeWidth="1.16501" />
-        <circle cx="387.214" cy="389" r="103.417" stroke="url(#paint1_linear_12_112)" strokeWidth="1.16501" />
-        <circle cx="387.214" cy="389" r="53.4175" stroke="url(#paint2_linear_12_112)" strokeWidth="1.16501" />
-        <circle cx="389.089" cy="389.089" r="267.295" stroke="url(#paint3_linear_12_112)" strokeWidth="1.16501" />
-        <circle cx="389.089" cy="389.089" r="388.507" stroke="url(#paint4_linear_12_112)" strokeWidth="1.16501" />
-        <g filter="url(#filter0_d_12_112)">
+        <circle
+          data-index={2}
+          cx="389.214"
+          cy="389"
+          r="160.417"
+          stroke="url(#paint0_linear_12_112)"
+          strokeWidth="1.16501"
+        />
+        <circle
+          data-index={1}
+          cx="387.214"
+          cy="389"
+          r="103.417"
+          stroke="url(#paint1_linear_12_112)"
+          strokeWidth="1.16501"
+        />
+        <circle
+          data-index={0}
+          cx="387.214"
+          cy="389"
+          r="53.4175"
+          stroke="url(#paint2_linear_12_112)"
+          strokeWidth="1.16501"
+        />
+        <circle
+          data-index={3}
+          cx="389.089"
+          cy="389.089"
+          r="267.295"
+          stroke="url(#paint3_linear_12_112)"
+          strokeWidth="1.16501"
+        />
+        <circle
+          data-index={4}
+          cx="389.089"
+          cy="389.089"
+          r="388.507"
+          stroke="url(#paint4_linear_12_112)"
+          strokeWidth="1.16501"
+        />
+        <g className="orbit" data-index={0} filter="url(#filter0_d_12_112)">
           <circle cx="145.622" cy="499.408" r="6.40757" transform="rotate(180 145.622 499.408)" fill="black" />
           <circle
             cx="145.622"
@@ -245,7 +330,7 @@ export function Illustration() {
             strokeWidth="1.16501"
           />
         </g>
-        <g filter="url(#filter1_d_12_112)">
+        <g className="orbit" data-index={1} filter="url(#filter1_d_12_112)">
           <circle cx="152.622" cy="264.408" r="6.40757" transform="rotate(180 152.622 264.408)" fill="black" />
           <circle
             cx="152.622"
@@ -256,7 +341,7 @@ export function Illustration() {
             strokeWidth="1.16501"
           />
         </g>
-        <g filter="url(#filter2_d_12_112)">
+        <g className="orbit" data-index={2} filter="url(#filter2_d_12_112)">
           <circle cx="319.622" cy="310.408" r="6.40757" transform="rotate(180 319.622 310.408)" fill="black" />
           <circle
             cx="319.622"
@@ -267,7 +352,7 @@ export function Illustration() {
             strokeWidth="1.16501"
           />
         </g>
-        <g filter="url(#filter3_d_12_112)">
+        <g className="orbit" data-index={3} filter="url(#filter3_d_12_112)">
           <circle cx="491.622" cy="264.408" r="6.40757" transform="rotate(180 491.622 264.408)" fill="black" />
           <circle
             cx="491.622"
@@ -278,7 +363,7 @@ export function Illustration() {
             strokeWidth="1.16501"
           />
         </g>
-        <g filter="url(#filter4_d_12_112)">
+        <g className="orbit" data-index={4} filter="url(#filter4_d_12_112)">
           <circle cx="640.622" cy="482.408" r="6.40757" transform="rotate(180 640.622 482.408)" fill="black" />
           <circle
             cx="640.622"
