@@ -36,6 +36,7 @@ export default function NavigationSwitcher() {
                       damping: 20,
                       mass: 1,
                     }}
+                    style={{ scale: 2, opacity: 0.2, rotate: 0.00001 }}
                   />
                   <motion.div
                     aria-hidden

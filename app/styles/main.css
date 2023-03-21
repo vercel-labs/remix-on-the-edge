@@ -401,7 +401,7 @@ nav:after {
   border-radius: inherit;
   position: absolute;
   z-index: 1;
-  filter: blur(32px);
+  filter: blur(7px);
   bottom: -52px;
   left: 25%;
 }
