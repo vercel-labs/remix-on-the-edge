@@ -8,7 +8,7 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import NavigationSwitcher from "./nav";
+import NavigationSwitcher from "~/nav";
 
 export const meta: MetaFunction = () => ({
   charset: "utf-8",

@@ -3,9 +3,11 @@ import { defer } from '@vercel/remix';
 import type { LoaderArgs } from '@vercel/remix';
 import { Await, useLoaderData } from '@remix-run/react';
 
-import { Card } from '../components/Card';
+import { Card } from '~/components/Card';
+import { Region } from '~/components/Region';
+import { parseVercelId } from '~/parse-vercel-id';
 
-export const config = { runtime: 'edge', regions: ['iad1'] };
+export const config = { runtime: 'edge' };
 
 let isCold = true;
 let initialDate = Date.now();
@@ -14,18 +16,12 @@ export async function loader({ request }: LoaderArgs) {
   const wasCold = isCold;
   isCold = false;
 
-  const id = request.headers.get("x-vercel-id")?.split(":").filter(Boolean);
-  if (!id) {
-    throw new Error('"x-vercel-id" header not present');
-  }
-
-  const proxyRegion = id[0];
-  const edgeInvokeRegion = id[id.length - 2];
+  const parsedId = parseVercelId(request.headers.get("x-vercel-id"));
 
   return defer({
     isCold: wasCold,
-    proxyRegion: sleep(proxyRegion, 1000),
-    edgeInvokeRegion: sleep(edgeInvokeRegion, 1500),
+    proxyRegion: sleep(parsedId.proxyRegion, 1000),
+    computeRegion: sleep(parsedId.computeRegion, 1500),
     date: new Date().toISOString(),
   });
 }
@@ -41,7 +37,7 @@ export function headers() {
 }
 
 export default function App() {
-  const { proxyRegion, edgeInvokeRegion, isCold, date } = useLoaderData<typeof loader>();
+  const { proxyRegion, computeRegion, isCold, date } = useLoaderData<typeof loader>();
   return (
     <>
       <div style={{ height: "100%" }}>
@@ -58,7 +54,7 @@ export default function App() {
                 <span>Proxy region</span>
                 <Suspense fallback={"Loading…"}>
                   <Await resolve={proxyRegion}>
-                    {(proxyRegion) => <strong>{proxyRegion}</strong>}
+                    {(region) => <Region region={region} />}
                   </Await>
                 </Suspense>
               </div>
@@ -66,10 +62,10 @@ export default function App() {
 
             <div className="block">
               <div className="contents">
-                <span>Edge region</span>
+                <span>Compute region</span>
                 <Suspense fallback={"Loading…"}>
-                  <Await resolve={edgeInvokeRegion}>
-                    {(edgeInvokeRegion) => <strong>{edgeInvokeRegion}</strong>}
+                  <Await resolve={computeRegion}>
+                    {(region) => <Region region={region} />}
                   </Await>
                 </Suspense>
               </div>
@@ -81,7 +77,7 @@ export default function App() {
             Generated at {date} ({isCold ? "cold" : "hot"}) by{" "}
             <a
               href="https://vercel.com/docs/concepts/functions/edge-functions"
-              target="_blank"
+              target="_blank" rel="noreferrer"
             >
               Vercel Edge Runtime
             </a>
@@ -98,7 +94,7 @@ function Footer() {
   return (
     <footer>
       <p className="company">
-        <a target="_blank" href="https://vercel.com" aria-label="Vercel">
+        <a target="_blank" href="https://vercel.com" aria-label="Vercel" rel="noreferrer">
           <svg
             viewBox="0 0 4438 1000"
             fill="none"
@@ -114,11 +110,11 @@ function Footer() {
 
       <p className="details">
         Built with{' '}
-        <a target="_blank" href="https://remix.run">
+        <a target="_blank" href="https://remix.run" rel="noreferrer">
           Remix
         </a>{' '}
         on{' '}
-        <a target="_blank" href="https://vercel.com">
+        <a target="_blank" href="https://vercel.com" rel="noreferrer">
           Vercel
         </a>
       </p>
@@ -126,7 +122,7 @@ function Footer() {
       <a
         target="_blank"
         href="https://github.com/vercel-labs/remix-on-the-edge"
-        className="source"
+        className="source" rel="noreferrer"
       >
         <svg
           width="24"

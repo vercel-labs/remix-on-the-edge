@@ -101,9 +101,11 @@ main .block strong {
   font-weight: 600;
 }
 
-main .block strong.na {
+main .block strong.na,
+main .block .region-code {
   color: #ccc;
   font-weight: normal;
+  text-transform: none;
 }
 
 .debug {
