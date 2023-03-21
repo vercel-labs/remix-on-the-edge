@@ -227,7 +227,7 @@ export function Illustration() {
         fill="none"
         className="illustration"
         data-theme="dark"
-        aria-label=""
+        aria-label={ILLUSTRATION_ARIA_LABEL}
       >
         <circle cx="389.214" cy="389" r="160.417" stroke="url(#paint0_linear_12_112)" strokeWidth="1.16501" />
         <circle cx="387.214" cy="389" r="103.417" stroke="url(#paint1_linear_12_112)" strokeWidth="1.16501" />
