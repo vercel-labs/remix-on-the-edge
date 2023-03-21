@@ -507,6 +507,10 @@ nav:after {
     gap: 16px;
   }
 
+  footer {
+    gap: 12px;
+  }
+
   .info span {
     font-size: 15px;
   }
