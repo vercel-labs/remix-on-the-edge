@@ -7,14 +7,23 @@ body {
   --fg: black;
   --bg: white;
   --remix: #2f77d1;
-  --accents-8: #fafafa;
-  --accents-7: #eaeaea;
-  --accents-6: #999;
-  --accents-5: #888;
-  --accents-4: #666;
-  --accents-3: #444;
-  --accents-2: #333;
-  --accents-1: #111;
+
+  --accents-1: #fafafa;
+  --accents-2: #eaeaea;
+  --accents-3: #999999;
+  --accents-4: #888888;
+  --accents-5: #666666;
+  --accents-6: #444444;
+  --accents-7: #333333;
+  --accents-8: #111111;
+
+  --nav-border: #BEBEBE80;
+  --nav-background: #FFF;
+  --nav-text: #999;
+  --nav-text-active: #000;
+  --nav-pill: radial-gradient(#DADADA 0%, #F1F1F1 100%);
+  --focus-outline: 2px solid var(--accents-4);
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
@@ -32,6 +41,20 @@ body {
   body {
     --fg: white;
     --bg: black;
+
+    --accents-8: #fafafa;
+    --accents-7: #eaeaea;
+    --accents-6: #999999;
+    --accents-5: #888888;
+    --accents-4: #666666;
+    --accents-3: #444444;
+    --accents-2: #333333;
+    --accents-1: #111111;
+
+    --nav-border: #44444480;
+    --nav-background: #000;
+    --nav-text-active: #FFF;
+    --nav-pill: radial-gradient(#505050 0%, #292929 100%);
   }
 }
 
@@ -381,7 +404,7 @@ nav {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  padding: 8px;
+  /*padding: 8px;*/
   margin-top: 32px;
   font-size: 14px;
   position: absolute;
@@ -392,17 +415,12 @@ nav {
   border: 1px solid var(--accents-2);
   border-radius: 9999px;
   box-shadow: none;
-  height: 50px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
   position: relative;
   z-index: 10;
 }
 
 .nav-root:after {
-  content: "";
+  content: '';
   background: linear-gradient(
     to left,
     var(--accents-2) 20%,
@@ -413,6 +431,7 @@ nav {
     var(--accents-2) 100%
   );
   z-index: -1;
+  background-position-x: var(--x);
   background-size: 200% auto;
   position: absolute;
   border-radius: inherit;
@@ -420,35 +439,33 @@ nav {
   left: 0;
   width: 100%;
   height: 100%;
+  transition: background-position-x 600ms ease;
 }
 
 .nav-switcher {
   overflow: hidden;
   border-radius: inherit;
-  padding: 4px;
-  box-sizing: border-box;
-  height: 100%;
   display: flex;
+  padding: 4px;
   background: var(--accents-1);
 }
 
 .nav-link {
   display: flex;
+  align-items: center;
   border-radius: inherit;
+  height: 36px;
+  border: 0;
   font-family: var(--font-sans);
   padding: 0 20px;
   font-size: 14px;
   font-weight: 500;
-  justify-content: center;
-  align-items: center;
-  flex: 1;
-  white-space: nowrap;
   background: transparent;
-  text-decoration: none;
   color: var(--accents-5);
-  cursor: pointer;
   position: relative;
+  cursor: pointer;
   transition: color 150ms ease;
+  text-decoration: none;
 }
 
 .nav-link.active {
@@ -477,7 +494,7 @@ nav {
 }
 
 .nav-glow {
-  background: #ffffff99;
+  background: white;
   width: 50%;
   height: 50px;
   border-radius: inherit;
@@ -485,6 +502,7 @@ nav {
   z-index: 1;
   filter: blur(32px);
   bottom: -52px;
+  left: 25%;
 }
 
 .nav-pill {
@@ -493,6 +511,7 @@ nav {
   height: 100%;
   top: 0;
   left: 0;
+  border-radius: inherit;
   background: rgba(255, 255, 255, 0.08);
 }
 
@@ -504,7 +523,7 @@ nav {
 
 @media (hover: hover) and (pointer: fine) {
   .nav-link:hover {
-    color: var(--accents-8);
+    color: var(--nav-text-active);
   }
 }
 

@@ -10,6 +10,8 @@ import {
 } from "@remix-run/react";
 import NavigationSwitcher from "~/nav";
 
+import mainCss from '~/styles/main.css';
+
 export const meta: MetaFunction = () => ({
   charset: "utf-8",
   title: "Remix on Vercel Edge Functions",
@@ -28,7 +30,7 @@ export const links: LinksFunction = () => {
   return [
     {
       rel: "stylesheet",
-      href: "/app.css",
+      href: mainCss
     },
   ];
 };
