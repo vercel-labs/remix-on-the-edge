@@ -160,6 +160,10 @@ main {
   color: var(--accents-4);
 }
 
+.info span.region strong {
+  color: var(--fg);
+}
+
 .info span svg {
   width: 18px;
   height: 18px;
