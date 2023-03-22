@@ -365,7 +365,7 @@ nav:after {
 
 .nav-switcher {
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: auto;
   overflow-y: hidden;
   border-radius: inherit;
   display: flex;
