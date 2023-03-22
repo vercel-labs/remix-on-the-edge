@@ -14,7 +14,7 @@ import mainCss from '~/styles/main.css';
 
 export function loader({ request }: LoaderArgs) {
   return {
-    uniqueUrl: request.headers.get('x-vercel-deployment-url'),
+    uniqueUrl: request.headers.get('x-forwarded-host'),
   };
 }
 
