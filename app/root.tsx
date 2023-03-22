@@ -1,24 +1,11 @@
-import type { MetaFunction, LinksFunction, LoaderArgs } from '@vercel/remix';
+import type { MetaFunction, LinksFunction } from '@vercel/remix';
 
-import {
-  Links,
-  LiveReload,
-  Meta,
-  Outlet,
-  Scripts,
-  ScrollRestoration,
-} from '@remix-run/react';
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import NavigationSwitcher from '~/nav';
 
 import mainCss from '~/styles/main.css';
 
-export function loader({ request }: LoaderArgs) {
-  return {
-    uniqueUrl: request.headers.get('x-vercel-deployment-url'),
-  };
-}
-
-export const meta: MetaFunction<typeof loader> = ({ data: { uniqueUrl } }) => ({
+export const meta: MetaFunction = () => ({
   charset: 'utf-8',
   title: 'Remix on Vercel Edge Functions',
   description: 'HTML, dynamically rendered in a city near you',
@@ -27,7 +14,7 @@ export const meta: MetaFunction<typeof loader> = ({ data: { uniqueUrl } }) => ({
   'twitter:creator': '@vercel',
   'twitter:title': 'Remix on Vercel Edge Functions',
   'twitter:description': 'HTML, dynamically rendered in a city near you',
-  'twitter:image': `https://${uniqueUrl}/og-card.png`,
+  'twitter:image': 'https://remix-on-the-edge.vercel.app/og-card.png',
   'twitter:image:alt': 'The Vercel and Remix logos',
   viewport: 'width=device-width,initial-scale=1',
 });
