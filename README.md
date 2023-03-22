@@ -2,11 +2,7 @@
 
 This is a demo of Remix running on Vercel Edge Functions (https://remix-on-the-edge.vercel.app/).
 
-Notably, it's truly zero-config and very lightweight:
-
-- No custom `remix.config.js`
-- No `@vercel/node` or `@remix/vercel` dependencies at all
-- No custom `vercel.json` configuration is needed
-
-Note: temporarily we have to set `VERCEL_CLI_VERSION` inside `build.env` in `vercel.json`.
-This need will go away once a Vercel CLI release is made.
+- Streaming SSR: Dynamically stream content with both Node.js and Edge runtimes
+- API Routes: Easily build your serverless API with Remix and a route `loader`
+- Advanced Caching: Use powerful cache headers like `stale-while-revalidate`
+- Data Mutations: Run `actions` inside Serverless/Edge Functions
