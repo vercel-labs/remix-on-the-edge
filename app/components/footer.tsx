@@ -4,7 +4,7 @@ export function Footer({ children }: React.PropsWithChildren<{}>) {
   return (
     <footer>
       <a target="_blank" href="https://vercel.com" aria-label="Vercel" rel="noreferrer" className="vercel">
-        <svg width="106" height="24" viewBox="0 0 106 24" fill="none">
+        <svg width="106" height="24" viewBox="0 0 106 24" fill="none" aria-hidden="true">
           <path d="M13.875 0L27.75 24H0L13.875 0Z" fill="var(--fg)" />
           <path
             d="M59.85 12.75C59.85 8.8875 57 6.1875 52.9125 6.1875C48.825 6.1875 45.975 8.8875 45.975 12.75C45.975 16.5375 49.05 19.3125 53.2875 19.3125C55.6125 19.3125 57.7125 18.45 59.0625 16.875L56.5125 15.4125C55.725 16.2 54.5625 16.6875 53.2875 16.6875C51.4125 16.6875 49.8 15.675 49.2375 14.1375L49.125 13.875H59.7375C59.8125 13.5 59.85 13.125 59.85 12.75ZM49.0875 11.625L49.1625 11.4C49.65 9.7875 51.075 8.8125 52.875 8.8125C54.7125 8.8125 56.1 9.7875 56.5875 11.4L56.6625 11.625H49.0875Z"
@@ -42,7 +42,7 @@ export function Footer({ children }: React.PropsWithChildren<{}>) {
       </div>
 
       <a target="_blank" href="https://github.com/vercel-labs/remix-on-the-edge" className="source" rel="noreferrer">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path
             fillRule="evenodd"
             clipRule="evenodd"
