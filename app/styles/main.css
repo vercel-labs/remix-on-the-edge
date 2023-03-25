@@ -157,7 +157,7 @@ main {
   align-items: center;
   gap: 8px;
   font-size: clamp(14px, 2vw, 16px);
-  color: var(--accents-4);
+  color: var(--accents-5);
 }
 
 .info span.region strong {
@@ -483,7 +483,7 @@ nav:after {
     display: none;
   }
   .details p:nth-of-type(2) {
-    color: var(--accents-4);
+    color: var(--accents-5);
   }
   .illustration[data-theme='dark'] {
     display: block;
