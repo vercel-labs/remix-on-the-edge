@@ -4,6 +4,7 @@ node_modules
 .env
 .vercel
 .output
+.DS_Store
 
 /build/
 /public/build
