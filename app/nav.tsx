@@ -79,8 +79,8 @@ export default function NavigationSwitcher() {
         <div className="nav-switcher">{buttons}</div>
       </nav>
       <p className="note">
-        Note: This demo simulates a slow network connection to demonstrate
-        streaming.
+        Note: This demo simulates a slow database or backend connection to
+        demonstrate streaming.
       </p>
     </>
   );
