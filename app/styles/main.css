@@ -35,8 +35,8 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   background: var(--bg);
   color: var(--fg);
   padding: 0 var(--root-padding);
@@ -403,7 +403,13 @@ nav:after {
 }
 
 .nav-stroke {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0), var(--accents-4) 20%, var(--accents-2) 67.19%, rgba(0, 0, 0, 0));
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0),
+    var(--accents-4) 20%,
+    var(--accents-2) 67.19%,
+    rgba(0, 0, 0, 0)
+  );
   height: 1px;
   position: absolute;
   top: -1px;
@@ -467,7 +473,11 @@ nav:after {
   }
 
   .nav-pill {
-    background: radial-gradient(132.5% 137.28% at 69.9% 88.75%, #dadada 0%, #f1f1f1 100%);
+    background: radial-gradient(
+      132.5% 137.28% at 69.9% 88.75%,
+      #dadada 0%,
+      #f1f1f1 100%
+    );
   }
 
   .nav-link {
@@ -542,4 +552,18 @@ nav:after {
   .vercel svg {
     height: 18px;
   }
+}
+
+.note {
+  font-size: 12px;
+  color: var(--accents-4);
+  max-width: 320px;
+  text-align: center;
+  top: 0;
+  margin-top: 12px;
+  position: fixed;
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  position: relative;
 }

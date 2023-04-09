@@ -10,19 +10,25 @@ const SECTION_DATA = [
 
 export default function NavigationSwitcher() {
   const { pathname } = useLocation();
-  const activeSection = SECTION_DATA.find((section) => section.href === pathname);
+  const activeSection = SECTION_DATA.find(
+    (section) => section.href === pathname
+  );
 
   const buttons = SECTION_DATA.map((section) => {
     return (
       <NavLink
         to={section.href}
-        className={({ isActive, isPending }) => `nav-link ${isActive ? 'active' : isPending ? 'pending' : ''}`}
+        className={({ isActive, isPending }) =>
+          `nav-link ${isActive ? 'active' : isPending ? 'pending' : ''}`
+        }
         key={section.label}
       >
         {({ isActive }) => {
           return (
             <>
-              <div style={{ position: 'relative', zIndex: 2 }}>{section.label}</div>
+              <div style={{ position: 'relative', zIndex: 2 }}>
+                {section.label}
+              </div>
               {isActive ? (
                 <>
                   <motion.div
@@ -57,18 +63,25 @@ export default function NavigationSwitcher() {
       </NavLink>
     );
   });
+
   return (
-    <nav
-      style={
-        activeSection
-          ? {
-              ['--x' as string]: activeSection.x,
-            }
-          : undefined
-      }
-    >
-      <div aria-hidden className="nav-stroke" />
-      <div className="nav-switcher">{buttons}</div>
-    </nav>
+    <>
+      <nav
+        style={
+          activeSection
+            ? {
+                ['--x' as string]: activeSection.x,
+              }
+            : undefined
+        }
+      >
+        <div aria-hidden className="nav-stroke" />
+        <div className="nav-switcher">{buttons}</div>
+      </nav>
+      <p className="note">
+        Note: This demo simulates a slow network connection to demonstrate
+        streaming.
+      </p>
+    </>
   );
 }
